@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Etch-a-Sketch</title>
+		<link rel="stylesheet" href="./style.css" />
+		<script src="./script.js" defer></script>
+	</head>
+	<body>
+		<h1 class="title">Etch-A-Sketch</h1>
+		<main class="main">
+			<div class="side-bar">
+				<button>ERASE</button>
+				<button>COLOR</button>
+				<button>RANDOM</button>
+				<div class="slidecontainer">
+					<input
+						type="range"
+						min="1"
+						max="60"
+						value="30"
+						class="slider"
+						id="myRange"
+					/>
+					<p>Value: <span id="demo"></span></p>
+				</div>
+			</div>
+			<div class="container"></div>
+		</main>
+	</body>
+</html>
