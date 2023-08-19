@@ -1,0 +1,39 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.title {
+	text-align: center;
+	margin: 40px auto 40px auto;
+	font-family: "Neue Montreal";
+}
+
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 160px;
+	margin: 150px auto;
+}
+
+.container {
+	display: grid;
+	/* grid-template-columns: repeat(16, 1fr);
+	grid-template-rows: repeat(16, 1fr); */
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	height: 500px;
+	width: 500px;
+	border: 1px solid black;
+}
+
+.side-bar {
+	display: flex;
+	flex-direction: column;
+	padding: 25px;
+	height: 500px;
+	width: 200px;
+	border: 1px solid black;
+}
