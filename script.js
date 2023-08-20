@@ -5,8 +5,23 @@ const output = document.getElementById("demo");
 const color = document.getElementById("myColor");
 const clear = document.getElementById("clear");
 const randomColor = document.getElementById("random-color");
+const btnToggleGrid = document.getElementById("toggle-grid");
+const btnEraser = document.getElementById("eraser");
 
 let selectedColor = "black";
+let mouseIsDown = false;
+let isGridVisible = true;
+let isRandomMode = false;
+let isEraserMode = false;
+
+// Event listener to track mouse state
+document.addEventListener("mousedown", () => {
+	mouseIsDown = true;
+});
+
+document.addEventListener("mouseup", () => {
+	mouseIsDown = false;
+});
 
 // Function to get the color from user
 function getColor() {
@@ -40,8 +55,15 @@ function createGrid(num) {
 		const square = document.createElement("div");
 		square.classList = `square square-${i}`;
 		square.style.background = "white";
-		square.style.border = `0.5px solid black`;
+		square.style.border = `0.5px solid gray`;
+		// Add both "mouseover" and "click" event listeners to each square
 		square.addEventListener("mouseover", () => {
+			if (mouseIsDown) {
+				square.style.background = selectedColor;
+			}
+		});
+
+		square.addEventListener("click", () => {
 			square.style.background = selectedColor;
 		});
 		container.appendChild(square);
@@ -56,11 +78,67 @@ function clearGrid() {
 	});
 }
 
+function toggleGrid() {
+	const squares = document.querySelectorAll(".square");
+	squares.forEach((square) => {
+		if (isGridVisible) {
+			square.style.border = "none";
+		} else {
+			square.style.border = "0.5px solid gray";
+		}
+	});
+
+	isGridVisible = !isGridVisible;
+}
+
 function getRandomColour() {
-	let r = Math.trunc(Math.random() * 256);
-	let g = Math.trunc(Math.random() * 256);
-	let b = Math.trunc(Math.random() * 256);
-	let randomColor = `rgb( ${r} , ${g}, ${b})`;
+	const squares = document.querySelectorAll(".square");
+	squares.forEach((square) => {
+		square.addEventListener("mouseover", () => {
+			if (mouseIsDown) {
+				if (isRandomMode) {
+					let randomColor = `rgb(${Math.random() * 256}, ${Math.random() * 256}, ${
+						Math.random() * 256
+					})`;
+
+					square.style.background = randomColor;
+				}
+			}
+		});
+
+		square.addEventListener("click", () => {
+			if (isRandomMode) {
+				let randomColor = `rgb(${Math.random() * 256}, ${Math.random() * 256}, ${
+					Math.random() * 256
+				})`;
+
+				square.style.background = randomColor;
+			}
+		});
+	});
+
+	isRandomMode = !isRandomMode;
+}
+
+function toggleEraser() {
+	const squares = document.querySelectorAll(".square");
+	squares.forEach((square) => {
+		square.addEventListener("mouseover", () => {
+			if (mouseIsDown) {
+				if (isEraserMode) {
+					square.style.background = "white";
+				}
+			}
+		});
+
+		square.addEventListener("click", () => {
+			if (isEraserMode) {
+				square.style.background = "white";
+			}
+		});
+	});
+
+	isEraserMode = !isEraserMode;
 }
 
 // Set default grid size to 30
@@ -72,5 +150,8 @@ createGrid(defaultGridSize);
 // Initialize the grid and slider behavior
 getInputForGridSize();
 getColor();
+
 clear.addEventListener("click", clearGrid);
 randomColor.addEventListener("click", getRandomColour);
+btnToggleGrid.addEventListener("click", toggleGrid);
+btnEraser.addEventListener("click", toggleEraser);
