@@ -22,6 +22,10 @@ A browser version of something between a sketchpad and an Etch-A-Sketch.
 
 **Client:** HTML - CSS - JavaScript
 
+## Link
+
+[Etch-a-Sketch](https://louiscollard.github.io/Etch-a-Sketch/)
+
 ## Screenshot
 
 ![App Screenshot](./images/etch_a_sketch_screenshot.jpg)
