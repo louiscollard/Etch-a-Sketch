@@ -11,9 +11,11 @@
 		<h1 class="title">Etch-A-Sketch</h1>
 		<main class="main">
 			<div class="side-bar">
-				<button id="clear">CLEAR</button>
-				<input type="color" name="" id="myColor" />
-				<button id="random-color">Rainbow</button>
+				<label for="">Pick a color</label>
+				<input type="color" class="color" id="myColor" />
+				<button id="eraser">Toggle Eraser</button>
+				<button id="random-color">Toggle Random</button>
+				<button id="toggle-grid">Toggle Grid</button>
 				<div class="slidecontainer">
 					<input
 						type="range"
@@ -23,8 +25,9 @@
 						class="slider"
 						id="myRange"
 					/>
-					<p>Value: <span id="demo"></span></p>
+					<p>Grid size: <span id="demo"></span></p>
 				</div>
+				<button id="clear">Clear</button>
 			</div>
 			<div class="container"></div>
 		</main>
